@@ -50,6 +50,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Response::class, mappedBy: 'user_id', orphanRemoval: true)]
     private Collection $responses;
 
+    #[ORM\OneToOne(mappedBy: 'user_id', cascade: ['persist', 'remove'])]
+    private ?Vote $vote = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $adresse = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $phone = null;
+
     public function __construct()
     {
         $this->threads = new ArrayCollection();
@@ -199,6 +208,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $response->setUserId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVote(): ?Vote
+    {
+        return $this->vote;
+    }
+
+    public function setVote(Vote $vote): static
+    {
+        // set the owning side of the relation if necessary
+        if ($vote->getUserId() !== $this) {
+            $vote->setUserId($this);
+        }
+
+        $this->vote = $vote;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): static
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): static
+    {
+        $this->phone = $phone;
 
         return $this;
     }
