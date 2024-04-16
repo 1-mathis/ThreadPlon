@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page d'accueil{% endblock %}
+{% block title %}Hello MardiController!{% endblock %}
 
 {% block body %}
 
@@ -8,6 +8,11 @@
 
 <h3>Avec la liste des threads ajoutés par les utilisateurs</h3>
 
-{# <input type="button" value="poser une question" id="makeAsk" onclick="window.location.href = '/thread/index.html.twig'"> #}
-
+<ul>
+    {% for thread in threads %}
+        <li>
+           <a href="{{ path('app_thread_details', {'id': thread.id}) }}">{{ thread.title }} - {{ thread.description }}</a>
+        </li>
+    {% endfor %} 
+</ul>
 {% endblock %}

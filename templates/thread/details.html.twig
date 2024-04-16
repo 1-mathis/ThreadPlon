@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MardiController!{% endblock %}
+
+{% block body %}
+
+<div class="thread">
+
+<div class='titre'> {{ thread.title }}</div>
+
+<div class='corps'>{{ thread.body }}</div>
+
+</div>
+
+
+<style>
+
+.thread {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 3px solid #d9d9d9;
+  margin: 20px;
+  border-radius: 30px;
+}
+
+.titre {
+  border: 3px solid #fff;
+  margin: 20px
+}
+
+.corps {
+  border: 1px solid #000;
+  margin: 20px
+}
+
+</style>
+{% endblock %}

@@ -9,8 +9,6 @@
 {% block body %}
   page du formulaire de création de threads
 
-
-
 {{ form_start(form) }}
 {{ form_row(form.title) }}
 {# {{ form_errors(form.title) }} #}
@@ -31,31 +29,6 @@
 {# {{ form_help(form.description) }} #}
 
 {# mettre un select pour les catégories #}
-
-{# {{ form_row(form.email) }}
-{{ form_errors(form.category) }}
-{{ form_label(form.category) }}
-{{ form_widget(form.category) }}
-{{ form_help(form.category) }}
-
-{{ form_row(form.test) }}
-{{ form_errors(form.category) }}
-{{ form_label(form.category) }}
-{{ form_widget(form.category) }}
-{{ form_help(form.category) }}
-
-{{ form_row(form.articles) }}
-{{ form_errors(form.category) }}
-{{ form_label(form.category) }}
-{{ form_widget(form.category) }}
-{{ form_help(form.category) }}
-
-{{ form_row(form.activities) }}
-{{ form_errors(form.category) }}
-{{ form_label(form.category) }}
-{{ form_widget(form.category) }}
-{{ form_help(form.category) }} #}
-
 
 <button type="submit">Submit</button>
 
