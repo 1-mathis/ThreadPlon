@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MardiController!{% endblock %}
+{% block title %}Page d'accueil{% endblock %}
 
 {% block body %}
 
@@ -8,11 +8,54 @@
 
 <h3>Avec la liste des threads ajoutés par les utilisateurs</h3>
 
+<div class="thread">
+
 <ul>
     {% for thread in threads %}
         <li>
-           <a href="{{ path('app_thread_details', {'id': thread.id}) }}">{{ thread.title }} - {{ thread.description }}</a>
+        <p class='start-thread'>id du post: {{ thread.id }} </p>
+           <a href="{{ path('app_thread_details', {'id': thread.id}) }}">{{ thread.title }}</a>
+           <p>{{ thread.description }}</p>
+           <hr>
         </li>
+           <br>
+           <br>
+           <br>
     {% endfor %} 
 </ul>
+
+</div>
+
+<style>
+
+h1, 
+h3 {
+    text-align: center;
+}
+
+h3 {
+    border-bottom: 2px #000 solid;
+    margin: 0px 300px;
+    padding-bottom: 50px;
+}
+
+    .thread {
+        /* background-color: #fff; */
+    }
+
+    .start-thread {
+        margin-top: 50px;
+    }
+
+    ul{
+        margin: 0px 300px;
+        list-style: none;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+</style>
+
 {% endblock %}
