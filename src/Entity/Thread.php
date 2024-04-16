@@ -44,9 +44,16 @@ class Thread
     #[ORM\OneToMany(targetEntity: Response::class, mappedBy: 'thread_id', orphanRemoval: true)]
     private Collection $responses;
 
+    /**
+     * @var Collection<int, category>
+     */
+    #[ORM\ManyToMany(targetEntity: category::class, inversedBy: 'threads')]
+    private Collection $thread;
+
     public function __construct()
     {
         $this->responses = new ArrayCollection();
+        $this->thread = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -164,6 +171,30 @@ class Thread
                 $response->setThreadId(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, category>
+     */
+    public function getThread(): Collection
+    {
+        return $this->thread;
+    }
+
+    public function addThread(category $thread): static
+    {
+        if (!$this->thread->contains($thread)) {
+            $this->thread->add($thread);
+        }
+
+        return $this;
+    }
+
+    public function removeThread(category $thread): static
+    {
+        $this->thread->removeElement($thread);
 
         return $this;
     }

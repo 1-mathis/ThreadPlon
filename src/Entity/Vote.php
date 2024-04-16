@@ -20,6 +20,11 @@ class Vote
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user_id = null;
 
+    #[ORM\ManyToOne(inversedBy: 'votes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Response $response = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +50,18 @@ class Vote
     public function setUserId(User $user_id): static
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getResponse(): ?Response
+    {
+        return $this->response;
+    }
+
+    public function setResponse(?Response $response): static
+    {
+        $this->response = $response;
 
         return $this;
     }
