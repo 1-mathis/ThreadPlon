@@ -17,18 +17,7 @@ class ThreadFormType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('body')
-            ->add('created_at', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updated_at', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('status')
-            ->add('user_id', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
-        ;
+            ->add('status');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

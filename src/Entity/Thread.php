@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Nullable;
 
 #[ORM\Entity(repositoryClass: ThreadRepository::class)]
 class Thread
@@ -26,7 +27,7 @@ class Thread
     private ?string $body = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+    private ?\DateTimeImmutable $created_at = Null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
@@ -47,7 +48,7 @@ class Thread
     /**
      * @var Collection<int, category>
      */
-    #[ORM\ManyToMany(targetEntity: category::class, inversedBy: 'threads')]
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'threads')]
     private Collection $thread;
 
     public function __construct()

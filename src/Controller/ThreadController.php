@@ -16,11 +16,13 @@ class ThreadController extends AbstractController
     public function index(EntityManagerInterface $entityManager, Request $request): Response
     {
         $thread = new Thread();
+
         $form = $this->createForm(ThreadFormType::class, $thread);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $thread = $form->getData();
 
             $entityManager->persist($thread);
