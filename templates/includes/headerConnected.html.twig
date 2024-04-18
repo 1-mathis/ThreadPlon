@@ -26,7 +26,10 @@
           </ul>
         </li>
       </ul>
-              {# <p class='text-user'>connecté en tant que : {{ app.user.username }}</p> #}
+      <div class="userName">
+          <p class='text-user'>connecté en tant que : </p>
+          <h4>{{ app.user.username }}</h4>
+      </div>
 
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -40,6 +43,19 @@
 
 .text-user {
   margin: 15px 50px;
+}
+
+h4 {
+  color: blue;
+}
+
+.userName {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 50px;
+  font-weight: bold;
 }
 
 </style>

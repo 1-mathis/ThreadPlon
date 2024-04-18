@@ -7,7 +7,7 @@
 {% block title %}Création de Threads{% endblock %}
 
 {% block body %}
-  page du formulaire de création de threads
+  <h1>page du formulaire de création de threads</h1>
 
 {{ form_start(form) }}
 {{ form_row(form.title) }}
@@ -30,9 +30,21 @@
 
 {# mettre un select pour les catégories #}
 
-<button type="submit">Submit</button>
+<button type="submit">Créer mon thread</button>
 
 {{ form_end(form) }}
+
+<style>
+
+h1 {
+  text-align: center;
+}
+
+form {
+  text-align: center;
+}
+
+</style>
 
 
 {% endblock %}

@@ -16,10 +16,14 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">paramètres</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="app_register">créer un compte</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_register') }}">créer un compte</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_login') }}">se connecter</a></li>
           </ul>
         </li>
       </ul>
+      <div class="messages">
+      <a>vous êtes déconnecté(e)</a>
+      </div>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -27,3 +31,18 @@
     </div>
   </div>
 </nav>
+
+<style>
+
+.messages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+    a:first-of-type {
+    margin-right: 20px
+  }
+}
+
+</style>
