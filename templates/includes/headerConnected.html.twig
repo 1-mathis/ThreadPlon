@@ -15,8 +15,10 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ path('app_thread') }}">créer un thread</a></li>
+
             {# <li><a class="dropdown-item" href="{{ path('app_user') }}">mon profil</a></li> #}
             <li><a class="dropdown-item" href="#">mon profil (non fonctionnel)</a></li>
+
             {# <li><a class="dropdown-item" href="{{ path('app_settings') }}">paramètres</a></li> #}
             <li><a class="dropdown-item" href="#">paramètres (non fonctionnel)</a></li>
             <li><hr class="dropdown-divider"></li>
@@ -24,8 +26,8 @@
           </ul>
         </li>
       </ul>
-              {# <p class='text-user'>connecté en tant que : {{ user.name }}, {{ user.surname }}</p> #}
-              <p class='text-user'>connecté en tant que : Prénom, NOM</p>
+              {# <p class='text-user'>connecté en tant que : {{ app.user.username }}</p> #}
+
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>

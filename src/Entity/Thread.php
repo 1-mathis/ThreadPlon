@@ -29,7 +29,7 @@ class Thread
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = Null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\Column(length: 100)]

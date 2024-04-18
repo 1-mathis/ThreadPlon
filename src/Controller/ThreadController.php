@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Thread;
 use App\Form\ThreadFormType;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,9 @@ class ThreadController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $thread->setCreatedAt(new DateTimeImmutable('now'))
+                ->setStatus('open')
+                ->setUserId($this->getUser());
             $thread = $form->getData();
 
             $entityManager->persist($thread);

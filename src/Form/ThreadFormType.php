@@ -16,8 +16,8 @@ class ThreadFormType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('body')
-            ->add('status');
+            ->add('body');
+        // ->add('status');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240412223017 extends AbstractMigration
+final class Version20240418130642 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -23,9 +23,16 @@ final class Version20240412223017 extends AbstractMigration
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE response (id INT AUTO_INCREMENT NOT NULL, thread_id_id INT NOT NULL, user_id_id INT NOT NULL, body LONGTEXT NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_3E7B0BFB75C0816C (thread_id_id), INDEX IDX_3E7B0BFB9D86650F (user_id_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE thread (id INT AUTO_INCREMENT NOT NULL, user_id_id INT NOT NULL, title VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, body LONGTEXT NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', status VARCHAR(100) NOT NULL, INDEX IDX_31204C839D86650F (user_id_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE thread_category (thread_id INT NOT NULL, category_id INT NOT NULL, INDEX IDX_9FD5A1DE2904019 (thread_id), INDEX IDX_9FD5A1D12469DE2 (category_id), PRIMARY KEY(thread_id, category_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, username VARCHAR(30) NOT NULL, adresse VARCHAR(255) NOT NULL, phone VARCHAR(10) NOT NULL, UNIQUE INDEX UNIQ_IDENTIFIER_EMAIL (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE vote (id INT AUTO_INCREMENT NOT NULL, user_id_id INT NOT NULL, response_id INT NOT NULL, vote INT DEFAULT NULL, UNIQUE INDEX UNIQ_5A1085649D86650F (user_id_id), INDEX IDX_5A108564FBF32840 (response_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE response ADD CONSTRAINT FK_3E7B0BFB75C0816C FOREIGN KEY (thread_id_id) REFERENCES thread (id)');
         $this->addSql('ALTER TABLE response ADD CONSTRAINT FK_3E7B0BFB9D86650F FOREIGN KEY (user_id_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE thread ADD CONSTRAINT FK_31204C839D86650F FOREIGN KEY (user_id_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE thread_category ADD CONSTRAINT FK_9FD5A1DE2904019 FOREIGN KEY (thread_id) REFERENCES thread (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE thread_category ADD CONSTRAINT FK_9FD5A1D12469DE2 FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE vote ADD CONSTRAINT FK_5A1085649D86650F FOREIGN KEY (user_id_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE vote ADD CONSTRAINT FK_5A108564FBF32840 FOREIGN KEY (response_id) REFERENCES response (id)');
     }
 
     public function down(Schema $schema): void
@@ -34,8 +41,15 @@ final class Version20240412223017 extends AbstractMigration
         $this->addSql('ALTER TABLE response DROP FOREIGN KEY FK_3E7B0BFB75C0816C');
         $this->addSql('ALTER TABLE response DROP FOREIGN KEY FK_3E7B0BFB9D86650F');
         $this->addSql('ALTER TABLE thread DROP FOREIGN KEY FK_31204C839D86650F');
+        $this->addSql('ALTER TABLE thread_category DROP FOREIGN KEY FK_9FD5A1DE2904019');
+        $this->addSql('ALTER TABLE thread_category DROP FOREIGN KEY FK_9FD5A1D12469DE2');
+        $this->addSql('ALTER TABLE vote DROP FOREIGN KEY FK_5A1085649D86650F');
+        $this->addSql('ALTER TABLE vote DROP FOREIGN KEY FK_5A108564FBF32840');
         $this->addSql('DROP TABLE category');
         $this->addSql('DROP TABLE response');
         $this->addSql('DROP TABLE thread');
+        $this->addSql('DROP TABLE thread_category');
+        $this->addSql('DROP TABLE user');
+        $this->addSql('DROP TABLE vote');
     }
 }

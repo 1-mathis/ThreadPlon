@@ -6,11 +6,14 @@
 
 <div class="thread">
 
-<div class='titre'> {{ thread.title }}</div>
+<div class='titre-back'> 
+<a id='back' href="{{ path('app_home') }}">retour</a>
+{{ thread.title }}
+</div>
 
 <div class='corps'>{{ thread.body }}</div>
 
-<a href="">modifier mon thread</a>
+<a id='edit-page-path' href="">modifier mon thread</a>
 {# <a href="{{ path('app_thread_edit') }}">modifier mon thread</a> #}
 
 </div>
@@ -20,28 +23,71 @@
 .thread {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  border: 2px solid #202020;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+.titre-back {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  border: 3px solid #d9d9d9;
   margin: 20px;
-  border-radius: 30px;
-}
-
-.titre {
-  border: 3px solid #fff;
-  margin: 20px
+  font-size: 25px;
+  text-transform: uppercase;
 }
 
 .corps {
-  border: 1px solid #000;
-  margin: 20px
+  /* border: 1px solid #000; */
+  border
+  margin: 20px;
+  padding: 20px;
+  font-size: 18px;
+  margin: 50px 150px; 
+  line-height: 2;
+
 }
 
-/* a {
-  background: #000;
-  color: #fff;
-} */
+#back {
+  text-decoration: none;
+  color: skyblue;
+  border: 2px white solid;
+  background-color: black;
+  padding: 7px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  transition-duration: 0.2s;
+}
+
+#edit-page-path {
+  text-decoration: none;
+  color: skyblue;
+  border: 2px white solid;
+  background-color: black;
+  padding: 7px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  transition-duration: 0.2s;
+}
+
+#edit-page-path:hover {
+  text-decoration: none;
+  color: skyblue;
+  border: 2px white solid;
+  background-color: black;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  transition-duration: 0.2s;
+}
 
 </style>
 {% endblock %}

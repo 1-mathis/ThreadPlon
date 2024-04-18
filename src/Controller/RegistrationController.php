@@ -24,14 +24,16 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user->setCreatedAt(new \DateTimeImmutable());
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
+            $user
+                ->setCreatedAt(new \DateTimeImmutable())
+                // encode the plain password
+                ->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
                 )
-            );
+                ->setRoles(['ROLES_USER']);
 
             $entityManager->persist($user);
             $entityManager->flush();
