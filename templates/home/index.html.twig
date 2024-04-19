@@ -14,7 +14,6 @@
     {% for thread in threads %}
         <li>
         <p class='start-thread'>id du post: {{ thread.id }} </p>
-        {# <p> {{ app.user.username}} </p>  #} {# METTRE ICI LE NOM DU USER DU POST #}
            <a href="{{ path('app_thread_details', {'id': thread.id}) }}">{{ thread.title }}</a>
            <p>{{ thread.description }}</p>
            <p>publié le :  {{ "now"|date("m/d/Y") }} à {{ "now"|date("h:i") }}</p>

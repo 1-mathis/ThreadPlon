@@ -4,10 +4,10 @@
         <link rel="stylesheet" href="{{asset('styles/student.css')}}"/>
         {% endblock %}
 
-{% block title %}Création de Threads{% endblock %}
+{% block title %}Modification de votre thread {id}{% endblock %}
 
 {% block body %}
-  <h1>page du formulaire de création de threads</h1>
+  <h1>page du formulaire de modification du threadu {{ thread.title }}</h1>
 
 {{ form_start(form) }}
 {{ form_row(form.title) }}
@@ -22,22 +22,15 @@
 {# {{ form_widget(form.body) }} #}
 {# {{ form_help(form.body) }} #}
 
-<div class="body-input">
 {{ form_row(form.body) }}
 {# {{ form_errors(form.description) }} #}
 {# {{ form_label(form.description) }} #}
 {# {{ form_widget(form.description) }} #}
 {# {{ form_help(form.description) }} #}
-</div>
 
 {# mettre un select pour les catégories #}
 
-<button type="submit">Créer mon thread</button>
-<br>
-
-<div class='home-path'>
-<a href="{{ path('app_home') }}">aller à la page des threads</a>
-</div>
+<button type="submit">sauvegarder et modifier mon thread</button>
 
 {{ form_end(form) }}
 
@@ -49,21 +42,9 @@ h1 {
 
 form {
   text-align: center;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-.home-path a{
-  margin: 20px;
-  color: black;
-  text-decoration: none;
-  border: 2px black solid;
-  border-radius: 5px;
-  background-color: #78A1BB;
-}
 </style>
+
 
 {% endblock %}
